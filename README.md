@@ -1,1 +1,66 @@
-# osc-route
+# OSC Route
+
+## Description
+
+**osc-route** is a lightweight Java library designed for routing Open Sound Control (OSC) messages using annotations. This library simplifies the process of mapping OSC message addresses to Java methods, making it ideal for applications in music and multimedia programming.
+
+## Features
+
+- Route OSC messages to specific methods using annotations
+- Support for multiple attributes in OSC messages
+- Simple and intuitive API for Java developers
+- Lightweight and efficient for real-time applications
+
+## Installation
+
+To include `osc-route` in your Java project, you can clone the repository or add it to your build system.
+
+### Using Maven
+
+Add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.example</groupId>
+    <artifactId>osc-route</artifactId>
+    <version>1.0.0</version> <!-- Update to the latest version -->
+</dependency>
+```
+
+## Example Controller
+```java
+package com.osc.controller;
+
+import com.osc.annotations.OSCAttribute;
+import com.osc.annotations.OSCNamespace;
+
+public class PositionController {
+    @OSCNamespace(name = "/placeholder")
+    public void placeholder(@OSCAttribute Integer a, @OSCAttribute Integer b) {
+        System.out.println("Called Placeholder with a (%s) and b (%s)".formatted(a, b));
+    }
+}
+```
+
+## Example Main
+```java
+package com.osc;
+
+import com.osc.annotations.OSCMain;
+import com.osc.controller.PositionController;
+import com.osc.exceptions.OSCException;
+import com.osc.routing.OSCApplication;
+import com.osc.routing.OSCRouter;
+
+import java.lang.reflect.InvocationTargetException;
+
+@OSCMain(controllers = { PositionController.class })
+public class HelloApplication {
+    public static void main(String[] args) throws OSCException, InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
+        OSCApplication.run(HelloApplication.class, args);
+        OSCRouter.forward("/placeholder", 1, 2);
+    }
+}
+```
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
