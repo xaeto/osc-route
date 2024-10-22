@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class OSCRouter {
-  private static Map<String, java.lang.reflect.Method> routes = new HashMap<>();
+  final private static Map<String, java.lang.reflect.Method> routes = new HashMap<>();
   public static void initialize(Class<?>... classes){
     for(var c : classes){
       var oscMethods = Arrays.stream(c.getMethods())
@@ -59,6 +59,6 @@ public class OSCRouter {
       args.add(obj);
     }
 
-    m.invoke(typedClass.newInstance(), args.toArray());
+    m.invoke(typedClass.newInstance(), Arrays.stream(params).toArray());
   }
 }
