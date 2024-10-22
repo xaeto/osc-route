@@ -1,7 +1,7 @@
-package com.osc.routing;
+package xaeto.osc.routing;
 
-import com.osc.annotations.OSCNamespace;
-import com.osc.exceptions.OSCException;
+import xaeto.osc.annotations.OSCNamespace;
+import xaeto.osc.exceptions.OSCException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,14 +9,14 @@ import java.util.*;
 
 public class OSCRouter {
   private static Map<String, java.lang.reflect.Method> routes = new HashMap<>();
-  public static void initialize(Class... classes){
+  public static void initialize(Class<?>... classes){
     for(var c : classes){
       var oscMethods = Arrays.stream(c.getMethods())
               .filter(annotation -> annotation.isAnnotationPresent(OSCNamespace.class))
               .toList();
 
       for(var oscMethod : oscMethods){
-        String name = oscMethod.getAnnotation(OSCNamespace.class).name();
+        String name = oscMethod.getAnnotation(OSCNamespace.class).route();
         routes.put(name, oscMethod);
       }
     }
@@ -31,6 +31,10 @@ public class OSCRouter {
     }
 
     return routes.get(namespace);
+  }
+
+  public static Set<String> getRoutes(){
+    return routes.keySet();
   }
 
   public static void forward(String namespace, Object... params) throws OSCException, InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {

@@ -1,6 +1,6 @@
-package com.osc.routing;
+package xaeto.osc.routing;
 
-import com.osc.annotations.OSCMain;
+import xaeto.osc.annotations.OSCMain;
 
 public class OSCApplication {
   public static void run(Class<?> application, String[] args){

@@ -29,11 +29,12 @@ Add the following dependency to your `pom.xml`:
 ```
 
 ## Example Controller
+
 ```java
 package com.osc.controller;
 
-import com.osc.annotations.OSCAttribute;
-import com.osc.annotations.OSCNamespace;
+import annotations.xaeto.osc.OSCAttribute;
+import annotations.xaeto.osc.OSCNamespace;
 
 public class PositionController {
     @OSCNamespace(name = "/placeholder")
@@ -44,18 +45,19 @@ public class PositionController {
 ```
 
 ## Example Main
+
 ```java
 package com.osc;
 
-import com.osc.annotations.OSCMain;
-import com.osc.controller.PositionController;
-import com.osc.exceptions.OSCException;
-import com.osc.routing.OSCApplication;
-import com.osc.routing.OSCRouter;
+import annotations.xaeto.osc.OSCMain;
+import controller.xaeto.osc.PositionController;
+import exceptions.xaeto.osc.OSCException;
+import routing.xaeto.osc.OSCApplication;
+import routing.xaeto.osc.OSCRouter;
 
 import java.lang.reflect.InvocationTargetException;
 
-@OSCMain(controllers = { PositionController.class })
+@OSCMain(controllers = {PositionController.class})
 public class HelloApplication {
     public static void main(String[] args) throws OSCException, InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
         OSCApplication.run(HelloApplication.class, args);

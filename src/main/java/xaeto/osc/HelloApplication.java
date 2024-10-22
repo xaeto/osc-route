@@ -1,10 +1,10 @@
-package com.osc;
+package xaeto.osc;
 
-import com.osc.annotations.OSCMain;
-import com.osc.controller.PositionController;
-import com.osc.exceptions.OSCException;
-import com.osc.routing.OSCApplication;
-import com.osc.routing.OSCRouter;
+import xaeto.osc.annotations.OSCMain;
+import xaeto.osc.controller.PositionController;
+import xaeto.osc.exceptions.OSCException;
+import xaeto.osc.routing.OSCApplication;
+import xaeto.osc.routing.OSCRouter;
 
 import java.lang.reflect.InvocationTargetException;
 

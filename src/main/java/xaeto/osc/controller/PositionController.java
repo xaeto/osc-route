@@ -1,10 +1,10 @@
-package com.osc.controller;
+package xaeto.osc.controller;
 
-import com.osc.annotations.OSCAttribute;
-import com.osc.annotations.OSCNamespace;
+import xaeto.osc.annotations.OSCAttribute;
+import xaeto.osc.annotations.OSCNamespace;
 
 public class PositionController {
-  @OSCNamespace(name = "/placeholder")
+  @OSCNamespace(route = "/placeholder")
   public void placeholder(@OSCAttribute Integer a, @OSCAttribute Integer b){
     System.out.println("Called Placeholder with a (%s) and b (%s)".formatted(a, b));
   }
