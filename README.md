@@ -2,7 +2,8 @@
 
 ## Description
 
-**osc-route** is a lightweight Java library designed for routing Open Sound Control (OSC) messages using annotations. This library simplifies the process of mapping OSC message addresses to Java methods, making it ideal for applications in music and multimedia programming.
+**osc-route** This library is for educational purposes. The idea is to make dedicated Endpoints for the OSC Protocol by parsing the OSC-Message
+and forward it via the OSC Router to the matching Controller. Since this library uses the Reflection-API the processing of a single OSC-Message will be noticably slower.
 
 ## Features
 
